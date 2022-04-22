@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menuId"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Setores</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <!-- Default Searchbar -->
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content fullscreen>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Selecione o setor</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-list>
+    <ion-item button routerLink="/category-list">Administrativo</ion-item>
+    <ion-item button>Financeiro</ion-item>
+    <ion-item button>Desenvolvimento</ion-item>
+    <ion-item button>Suporte TI</ion-item>
+    <ion-item button>Laboratórios</ion-item>
+    <ion-item button>Manutenção</ion-item>
+    <ion-item button>Apoio</ion-item>
+    <ion-item button>Outros</ion-item>
+  </ion-list>
+</ion-content>
