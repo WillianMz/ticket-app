@@ -60,19 +60,22 @@
         <ion-item>
           <ion-label>Prioridade</ion-label>
           <ion-select placeholder="Selecione" okText="Confirma" cancelText="Cancela">
-            <ion-select-option value="f">Normal</ion-select-option>
-            <ion-select-option value="m">Alta</ion-select-option>
-            <ion-select-option value="m">Urgente</ion-select-option>
-            <ion-select-option value="m">Baixa</ion-select-option>
+            <ion-select-option value="0">Normal</ion-select-option>
+            <ion-select-option value="1">Alta</ion-select-option>
+            <ion-select-option value="2">Urgente</ion-select-option>
+            <ion-select-option value="3">Baixa</ion-select-option>
           </ion-select>
         </ion-item>
-
-
       </ion-list>
 
-
     </ion-card-content>
-
   </ion-card>
+
+  <ion-button (click)="save()"  expand="block" fill="clear" shape="round">
+    Continuar
+  </ion-button>
+  <ion-button  expand="block" fill="clear" shape="round">
+    Cancelar
+  </ion-button>
 
 </ion-content>

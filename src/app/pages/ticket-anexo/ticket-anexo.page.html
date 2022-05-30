@@ -1,0 +1,25 @@
+<ion-header>
+  <app-toolbar title="Anexar Arquivo"></app-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+      <p>
+        Somente adicione Imagens ou arquivo PDF!
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <input type="file">
+    </ion-item>
+  </ion-list>
+
+  <ion-button (click)="save()" expand="block" fill="clear" shape="round">
+    Continuar
+  </ion-button>
+
+</ion-content>

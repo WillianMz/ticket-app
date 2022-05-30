@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-open',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketOpenPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  save(){
+    this.router.navigate(['/ticket-anexo']);
   }
 
 }

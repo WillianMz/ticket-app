@@ -10,7 +10,7 @@ export class AppComponent {
     { title: 'Abrir Chamado', url: '/ticket-open', icon: 'add' },
     { title: 'Setores', url: '/sector-list', icon: 'layers' },
     { title: 'Meus Tickets', url: '/ticket-list', icon: 'ticket' },
-    { title: 'Feedback', url: '/ticket-open', icon: 'newspaper' },
+    /* { title: 'Feedback', url: '/ticket-open', icon: 'newspaper' }, */
     { title: 'Sobre', url: '/about', icon: 'book' }
   ];
 
