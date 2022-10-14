@@ -13,18 +13,20 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Selecione o setor</ion-card-title>
+      <ion-card-title>Selecione o laboratório</ion-card-title>
     </ion-card-header>
   </ion-card>
 
-  <ion-list>
-    <ion-item button routerLink="/category-list">Administrativo</ion-item>
-    <ion-item button>Financeiro</ion-item>
-    <ion-item button>Desenvolvimento</ion-item>
-    <ion-item button>Suporte TI</ion-item>
-    <ion-item button>Laboratórios</ion-item>
-    <ion-item button>Manutenção</ion-item>
-    <ion-item button>Apoio</ion-item>
-    <ion-item button>Outros</ion-item>
+  <ion-list lines="inset">
+    <ion-item button [routerLink]="[s.id]" *ngFor="let s of sectors">
+      <ion-avatar slot="start">
+        <img src="../../../assets/icon/favicon.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{s.nome}}</h2>
+      </ion-label>
+    </ion-item>
+
   </ion-list>
+
 </ion-content>

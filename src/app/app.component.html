@@ -9,12 +9,12 @@
       <ion-content>
         <ion-item lines="none">
           <ion-avatar slot="start">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-1wgug3PIGgJ1c1k51qexC55AU1kYXoSurg&usqp=CAU">
+            <img src="{{usuario.img || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-1wgug3PIGgJ1c1k51qexC55AU1kYXoSurg&usqp=CAU'}}">
           </ion-avatar>
           <!-- <ion-label>USUARIO TESTE</ion-label> -->
           <ion-label>
-            <h2>NOME DO USUARIO</h2>
-            <p>usuario@suporte.com.br</p>
+            <h2>{{usuario.nome}}</h2>
+            <p>{{usuario.email}}</p>
           </ion-label>
         </ion-item>
 

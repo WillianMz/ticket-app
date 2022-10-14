@@ -20,10 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sector-list/sector-list.module').then( m => m.SectorListPageModule)
   },
   {
-    path: 'category-list',
-    loadChildren: () => import('./pages/category-list/category-list.module').then( m => m.CategoryListPageModule)
-  },
-  {
     path: 'about',
     loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
   },
@@ -36,9 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/ticket-anexo/ticket-anexo.module').then( m => m.TicketAnexoPageModule)
   },
   {
-    path: 'ticket-comentario',
-    loadChildren: () => import('./pages/ticket-comentario/ticket-comentario.module').then( m => m.TicketComentarioPageModule)
-  },  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   }

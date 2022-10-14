@@ -15,28 +15,6 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- abrir ticket para equipamento -->
-  <ion-card *ngIf="false">
-    <ion-card-header>
-      <ion-card-subtitle>Ticket para equipamento</ion-card-subtitle>
-      <ion-card-title>Equipamento</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Awesome content
-    </ion-card-content>
-  </ion-card>
-
-  <!-- criar feedback -->
-  <ion-card *ngIf="false">
-    <ion-card-header>
-      <ion-card-subtitle>Novo Feedback</ion-card-subtitle>
-      <ion-card-title>Feedback</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Awesome content
-    </ion-card-content>
-  </ion-card>
-
   <!-- dados do ticket -->
   <ion-card>
     <ion-card-header>
@@ -45,37 +23,44 @@
 
     <ion-card-content>
 
-      <ion-list>
+      <form [formGroup]="chamadoForm">
+        <ion-list>
 
-        <ion-item>
-          <ion-label position="floating">Assunto</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="floating">Descrição do problema</ion-label>
-          <ion-textarea wrap="soft" spellcheck="true" rows="6"></ion-textarea>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Prioridade</ion-label>
-          <ion-select placeholder="Selecione" okText="Confirma" cancelText="Cancela">
-            <ion-select-option value="0">Normal</ion-select-option>
-            <ion-select-option value="1">Alta</ion-select-option>
-            <ion-select-option value="2">Urgente</ion-select-option>
-            <ion-select-option value="3">Baixa</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
+          <ion-item>
+            <ion-label position="floating">Equipamento</ion-label>
+            <ion-input id="equipamento" formControlName="equipamento"></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="floating">Assunto</ion-label>
+            <ion-input id="assunto" formControlName="assunto"></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="floating">Descrição do problema</ion-label>
+            <ion-textarea wrap="soft" spellcheck="true" rows="6" id="descricao" formControlName="descricao"></ion-textarea>
+          </ion-item>
+  
+          <!-- <ion-item>
+            <ion-label>Prioridade</ion-label>
+            <ion-select placeholder="Selecione" okText="Confirma" cancelText="Cancela">
+              <ion-select-option value="0">Normal</ion-select-option>
+              <ion-select-option value="1">Alta</ion-select-option>
+              <ion-select-option value="2">Urgente</ion-select-option>
+              <ion-select-option value="3">Baixa</ion-select-option>
+            </ion-select>
+          </ion-item> -->
+        </ion-list>
+      </form>
 
     </ion-card-content>
   </ion-card>
 
-  <ion-button (click)="save()"  expand="block" fill="clear" shape="round">
+  <ion-button (click)="salvar()"  expand="block" fill="clear" shape="round">
     Continuar
   </ion-button>
-  <ion-button  expand="block" fill="clear" shape="round">
-    Cancelar
+  <ion-button (click)="identificarEquipamento()" expand="block" fill="clear" shape="round">
+    Verificar Equipamento
   </ion-button>
 
 </ion-content>

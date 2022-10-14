@@ -6,4 +6,21 @@
 
 <ion-content>
 
+  <form [formGroup]="loginForm">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" id="email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Login</ion-label>
+      <ion-input formControlName="senha" id="senha"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button (click)="entrar()">Entrar</ion-button>
+    </ion-item>
+
+  </form>
+
 </ion-content>
