@@ -1,22 +1,16 @@
 <ion-header>
-  <app-toolbar title="Setores"></app-toolbar>
-
-  <ion-toolbar>
-    <!-- Default Searchbar -->
-    <ion-searchbar></ion-searchbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>LABORATÓRIOS</ion-title>
   </ion-toolbar>
-
 </ion-header>
 
 
 <ion-content fullscreen>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Selecione o laboratório</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
+  <ion-searchbar placeholder="Procurar"></ion-searchbar>
+  
   <ion-list lines="inset">
     <ion-item button [routerLink]="[s.id]" *ngFor="let s of sectors">
       <ion-avatar slot="start">
@@ -26,7 +20,5 @@
         <h2>{{s.nome}}</h2>
       </ion-label>
     </ion-item>
-
   </ion-list>
-
 </ion-content>

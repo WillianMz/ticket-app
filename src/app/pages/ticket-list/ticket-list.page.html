@@ -1,7 +1,53 @@
 <ion-header>
-  <app-toolbar title="Meus Tickets"></app-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MEUS CHAMADOS</ion-title>
+  </ion-toolbar>
 </ion-header>
+
 
 <ion-content>
 
+  <ion-searchbar placeholder="Procurar"></ion-searchbar>
+
+  <ion-segment value="pendente">
+    <ion-segment-button value="pendente" (click)="pendentes()" >
+      <ion-label>Pendentes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="finalizado" (click)="finalizados()">
+      <ion-label>Finalizados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="todos" (click)="todos()">
+      <ion-label>Todos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <ion-list lines="inset">
+
+    <ion-card>
+      
+      <ion-card-content>
+        <ion-item button [routerLink]="[c.id]" *ngFor="let c of chamados">
+          <!-- <ion-avatar slot="start">
+            <img src="../../../assets/img/img1.png">
+          </ion-avatar> -->
+          <ion-label>
+            <h2>#{{c.id}} - {{c.assunto}}</h2>
+            <h3>{{c.setor.nome}}</h3>
+            <p>{{c.descricao}}</p>
+          </ion-label>
+    
+          <ion-label slot="end">
+            <ion-note slot="end" color="primary">{{c.status}}</ion-note>
+          </ion-label>
+          <!-- <ion-note slot="end" color="warning">Alto</ion-note> -->
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+
+  </ion-list>
 </ion-content>

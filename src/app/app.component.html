@@ -8,8 +8,8 @@
       </ion-header>
       <ion-content>
         <ion-item lines="none">
-          <ion-avatar slot="start">
-            <img src="{{usuario.img || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-1wgug3PIGgJ1c1k51qexC55AU1kYXoSurg&usqp=CAU'}}">
+          <ion-avatar slot="start" *ngIf="perfil?.imgPerfil">
+            <img [src]="perfil.imgPerfil || 'https://github.com/mdo.png'">
           </ion-avatar>
           <!-- <ion-label>USUARIO TESTE</ion-label> -->
           <ion-label>

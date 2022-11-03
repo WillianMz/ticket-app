@@ -1,5 +1,6 @@
-import { SetorResponse } from './setorResponse.model';
+import { EquipamentoAnexo } from './equipamentoAnexo.model';
 import { TipoEquipamentoResponse } from './tipoEquipamentoResponse.model';
+import { SetorResponse } from './../sector/setorResponse.model';
 
 export class EquipamentoResponse {
     public id?: number;
@@ -16,11 +17,15 @@ export class EquipamentoResponse {
     public anoFabricacao?: string;
     public fornecedorId?: number;
     public notaFiscal: number;
-    public chaveNFe?: string;
+    public chaveNotaFiscal?: string;
     public dtCompra: string;
-    public valorCompra: string
-    public tempoGarantia?: string;
+    public dtRecebimento: string;
+    public garantiaExtendida?: number;
+    public garantiaContratual?: number;
+    public validadeGarantia?: string;
+    public valorCompra: string;
     public anotacoes?: string;
     public foto?: string;
     public motivoBaixa?: string;
+    public anexos?: EquipamentoAnexo[];
 }

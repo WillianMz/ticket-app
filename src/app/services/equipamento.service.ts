@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { EquipamentoResponse } from '../models/equipamentoResponse.model';
-import { TipoEquipamentoResponse } from '../models/tipoEquipamentoResponse.model';
+import { EquipamentoResponse } from '../models/equipment/equipamentoResponse.model';
+import { TipoEquipamentoResponse } from '../models/equipment/tipoEquipamentoResponse.model';
 
 const ENDERECO_API: string = `${environment.api}/equipamento`;
 

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { Usuario } from './models/usuario.model';
+import { Router } from '@angular/router';
+import { PerfilResponse } from './models/pessoa/perfilResponse.model';
+import { Usuario } from './models/user/usuario.model';
 import { LoginService } from './services/login.service';
+import { PessoaService } from './services/pessoa.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -9,18 +12,21 @@ import { LoginService } from './services/login.service';
 export class AppComponent {
 
   usuario: Usuario;
+  perfil: PerfilResponse;
 
   public appPages = [
-    { title: 'Home', url: '/home', icon: 'home' },
+    /* { title: 'Home', url: '/home', icon: 'home' }, */
     { title: 'Abrir Chamado', url: '/ticket-open', icon: 'add' },
-    { title: 'Setores', url: '/sector-list', icon: 'layers' },
-    { title: 'Meus Tickets', url: '/ticket-list', icon: 'ticket' },
-    /* { title: 'Feedback', url: '/ticket-open', icon: 'newspaper' }, */
+    { title: 'Meus Chamados', url: '/ticket-list', icon: 'ticket' },
+    { title: 'Laboratórios', url: '/sector-list', icon: 'layers' },
+    { title: 'Perfil', url: '/perfil', icon: 'newspaper' },
     { title: 'Sobre', url: '/about', icon: 'book' }
   ];
 
   constructor(
-    private loginService: LoginService
+    private loginService: LoginService,
+    private pessoaService: PessoaService,
+    private router: Router
   ) {
     this.configurarNavBar();
   }
@@ -30,9 +36,24 @@ export class AppComponent {
     if(user){
       this.usuario = user;
     }
+
+    this.carregarPerfil();
   }
 
   sair(){
     this.loginService.fazerLogout();
+  }
+
+  private carregarPerfil(){
+    this.pessoaService.meuPerfil().subscribe({
+      next: (response) => {
+        if(response){
+          this.perfil = response;
+        }
+        else{
+          this.router.navigate(['/users/account']);
+        }
+      }
+    });
   }
 }

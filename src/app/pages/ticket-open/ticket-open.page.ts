@@ -1,12 +1,14 @@
+import { UploadService } from './../../services/upload.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ChamadoRequest } from 'src/app/models/chamadoRequest.model';
-import { EquipamentoResponse } from 'src/app/models/equipamentoResponse.model';
-import { SetorResponse } from 'src/app/models/setorResponse.model';
+import { ToastController } from '@ionic/angular';
 import { EquipamentoService } from 'src/app/services/equipamento.service';
 import { SetorService } from 'src/app/services/setor.service';
 import { TicketService } from 'src/app/services/ticket.service';
+import { SetorResponse } from 'src/app/models/sector/setorResponse.model';
+import { EquipamentoResponse } from 'src/app/models/equipment/equipamentoResponse.model';
+import { ChamadoRequest } from 'src/app/models/ticket/chamadoRequest.model';
 
 @Component({
   selector: 'app-ticket-open',
@@ -18,15 +20,19 @@ export class TicketOpenPage implements OnInit {
   chamadoForm: FormGroup;
   setores: SetorResponse[];
   equipamento: EquipamentoResponse;
-  selecionarPrioridade: boolean = false;
   sucesso: boolean;
   mensagem: string;
+  anexoForm: any;
+  anexoNome: string;
+  urlAnexo: string;
 
   constructor(
     private setorService: SetorService,
     private equipamentoService: EquipamentoService,
     private chamadoService: TicketService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController,
+    private uploadService: UploadService
   ) { 
     const chamado = new ChamadoRequest();
     this.validarFormulario(chamado);
@@ -56,11 +62,18 @@ export class TicketOpenPage implements OnInit {
     //this.obterSetores();
   }
 
+  public upload(file: any){
+    this.anexoForm = file[0];
+    this.anexoNome = file[0].name;
+    this.fazerUpload();
+  }
+
   public salvar(){
     const chamadoRequest = new ChamadoRequest();
     chamadoRequest.equipamentoId = this.inputEquipamento?.value;
-    chamadoRequest.assunto = this.inputAssunto?.value;
+    chamadoRequest.assunto = this.inputAssunto?.value || `Equipamento ${chamadoRequest.equipamentoId}`;
     chamadoRequest.descricao = this.inputDescricao?.value;
+    chamadoRequest.anexo = this.urlAnexo;
 
     this.chamadoService.chamadoEquipamento(chamadoRequest).subscribe({
       next: (response) => {
@@ -68,9 +81,10 @@ export class TicketOpenPage implements OnInit {
         this.mensagem = response['mensagem'];
 
         if(this.sucesso){
-          alert(this.mensagem);
-          //this.notification.alertSucesso('Novo chamado', this.mensagem, 2000, true);
-          //this.router.navigate(['/ticket']);
+          //alert(this.mensagem);
+          this.notificacao('top', this.mensagem);
+          this.chamadoForm.reset();
+          this.router.navigate(['/ticket-list']);
         }
         else{
           alert(this.mensagem);
@@ -80,6 +94,16 @@ export class TicketOpenPage implements OnInit {
         alert('Erro');
       }
     });
+  }
+
+  async notificacao(position: 'top' | 'middle' | 'bottom', message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: position
+    });
+
+    await toast.present();
   }
 
 
@@ -121,6 +145,23 @@ export class TicketOpenPage implements OnInit {
         Validators.minLength(35),
         Validators.maxLength(1000)
       ])
+    });
+  }
+
+  private fazerUpload(){
+    let formdata = new FormData();
+    formdata.append('file', this.anexoForm, this.anexoNome);
+
+    this.uploadService.arquivo(formdata).subscribe({
+      next: (response) => {
+        if(response){
+          this.urlAnexo = response['objeto'];
+          console.log(this.urlAnexo);
+        }
+      },
+      error: (response) => {
+        console.log(response);
+      }
     });
   }
 

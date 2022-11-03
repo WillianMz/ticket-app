@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SetorResponse } from 'src/app/models/setorResponse.model';
+import { SetorResponse } from 'src/app/models/sector/setorResponse.model';
 import { SetorService } from 'src/app/services/setor.service';
 
 @Component({

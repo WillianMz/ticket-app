@@ -2,14 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { CadastroUsuarioRequest } from '../models/cadastroUsuarioRequest.model';
 import { Observable } from 'rxjs';
-import { CadastroUsuarioResponse } from '../models/cadastroUsuarioResponse.model';
-import { LoginRequest } from '../models/loginRequest.model';
-import { LoginResponse } from '../models/loginResponse.model';
-import { Usuario } from '../models/usuario.model';
-
 import * as jwt_decode from 'jwt-decode';
+import { CadastroUsuarioRequest } from '../models/user/cadastroUsuarioRequest.model';
+import { CadastroUsuarioResponse } from '../models/user/cadastroUsuarioResponse.model';
+import { LoginRequest } from '../models/auth/loginRequest.model';
+import { LoginResponse } from '../models/auth/loginResponse.model';
+import { Usuario } from '../models/user/usuario.model';
 
 const CHAVE_TOKEN: string = "ticketapp";
 const ENDERECO_API: string = `${environment.api}/usuario`;

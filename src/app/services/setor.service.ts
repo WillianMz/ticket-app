@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { SetorResponse } from '../models/setorResponse.model';
 import { Observable } from 'rxjs';
+import { SetorResponse } from '../models/sector/setorResponse.model';
 
 const ENDERECO_API: string = `${environment.api}/setor`;
 

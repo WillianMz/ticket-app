@@ -25,16 +25,17 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'ticket-anexo',
-    loadChildren: () => import('./pages/ticket-anexo/ticket-anexo.module').then( m => m.TicketAnexoPageModule)
+    //loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    redirectTo:'ticket-list'
   },
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   }
+
 
 
 
