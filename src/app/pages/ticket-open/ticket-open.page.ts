@@ -4,11 +4,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { EquipamentoService } from 'src/app/services/equipamento.service';
-import { SetorService } from 'src/app/services/setor.service';
 import { TicketService } from 'src/app/services/ticket.service';
 import { SetorResponse } from 'src/app/models/sector/setorResponse.model';
 import { EquipamentoResponse } from 'src/app/models/equipment/equipamentoResponse.model';
 import { ChamadoRequest } from 'src/app/models/ticket/chamadoRequest.model';
+import { SectorService } from 'src/app/services/sector.service';
 
 @Component({
   selector: 'app-ticket-open',
@@ -27,7 +27,7 @@ export class TicketOpenPage implements OnInit {
   urlAnexo: string;
 
   constructor(
-    private setorService: SetorService,
+    private setorService: SectorService,
     private equipamentoService: EquipamentoService,
     private chamadoService: TicketService,
     private router: Router,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SetorResponse } from 'src/app/models/sector/setorResponse.model';
-import { SetorService } from 'src/app/services/setor.service';
+import { SectorService } from 'src/app/services/sector.service';
 
 @Component({
   selector: 'app-sector-list',
@@ -14,7 +14,7 @@ export class SectorListPage implements OnInit {
   sectorName: string;
 
   constructor(
-    private setorService: SetorService,
+    private setorService: SectorService,
     private router: Router
   ) { }
 

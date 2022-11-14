@@ -9,12 +9,12 @@
 
 
 <ion-content fullscreen>
-  <ion-searchbar placeholder="Procurar"></ion-searchbar>
+  <!-- <ion-searchbar placeholder="Procurar"></ion-searchbar> -->
   
-  <ion-list lines="inset">
-    <ion-item button [routerLink]="[s.id]" *ngFor="let s of sectors">
+  <ion-list lines="full">
+    <ion-item button *ngFor="let s of sectors">
       <ion-avatar slot="start">
-        <img src="../../../assets/icon/favicon.png">
+        <img src="../../../assets/icon_labs.png">
       </ion-avatar>
       <ion-label>
         <h2>{{s.nome}}</h2>

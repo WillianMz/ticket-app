@@ -5,13 +5,13 @@ import { CriadorResponse } from './criadorResponse.model';
 export class ChamadoResponse {
     public id?: number;
     public dataAbertura: string;
-    public tipo?: string;
+    public tipo?: number;
     public criador: CriadorResponse;
     public setor: SetorResponse;
     public assunto: string;
     public descricao: string;
-    public status?: string;
-    public prioridade?: string;
+    public status?: number;
+    public prioridade?: number;
     public dataFechamento?: string;
     public solucao?: string;
     public operador?: OperadorResponse;

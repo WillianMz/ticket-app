@@ -35,9 +35,9 @@ export class AppComponent {
     let user = this.loginService.usuarioLogado();
     if(user){
       this.usuario = user;
+      this.carregarPerfil();
     }
 
-    this.carregarPerfil();
   }
 
   sair(){

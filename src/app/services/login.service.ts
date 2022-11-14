@@ -1,17 +1,21 @@
+import { Route, Router } from '@angular/router';
+import { Usuario } from './../models/user/usuario.model';
+import { LoginRequest } from './../models/auth/loginRequest.model';
+import { LoginResponse } from './../models/auth/loginResponse.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
-import * as jwt_decode from 'jwt-decode';
 import { CadastroUsuarioRequest } from '../models/user/cadastroUsuarioRequest.model';
+import { Observable } from 'rxjs';
 import { CadastroUsuarioResponse } from '../models/user/cadastroUsuarioResponse.model';
-import { LoginRequest } from '../models/auth/loginRequest.model';
-import { LoginResponse } from '../models/auth/loginResponse.model';
-import { Usuario } from '../models/user/usuario.model';
 
-const CHAVE_TOKEN: string = "ticketapp";
+import { CapacitorHttp, HttpResponse } from '@capacitor/core';
+
+import * as jwt_decode from 'jwt-decode';
+
+const CHAVE_TOKEN: string = "wntickets";
 const ENDERECO_API: string = `${environment.api}/usuario`;
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +26,37 @@ export class LoginService {
     private http: HttpClient,
     private router: Router
   ) { }
-
+ 
+  //OK
   criarContaDeUsuario(novaConta: CadastroUsuarioRequest): Observable<CadastroUsuarioResponse | null>{
     return this.http.post(ENDERECO_API, novaConta);
   }
 
+  /* const doPost = () => {
+  const options = {
+    url: 'https://example.com/my/api',
+    headers: { 'X-Fake-Header': 'Fake-Value' },
+    data: { foo: 'bar' },
+  };
+
+  const response: HttpResponse = await CapacitorHttp.post(options);
+
+  // or...
+  // const response = await CapacitorHttp.request({ ...options, method: 'POST' })
+}; */
+
   //OK
-  fazerLogin(login: LoginRequest): Observable<LoginResponse | null>{
+  fazerLogin(login: LoginRequest) {
     return this.http.post(`${ENDERECO_API}/login`, login);
+    /* const options = {
+      url: `${ENDERECO_API}/login`,
+      headers: { 'Content-Type': 'application/json' },
+      data: { login },
+    };
+
+    const response: HttpResponse = await CapacitorHttp.post(options);
+    //alert(response);
+    return response; */
   }
 
   //OK
@@ -64,8 +91,6 @@ export class LoginService {
       usuario.email= decoded.email;
       usuario.nome = decoded.name;
       usuario.perfil = decoded.role;
-      console.log(usuario.email= decoded.email);
-      console.log(usuario.nome = decoded.name);
       return usuario;
     }
     else{
@@ -122,4 +147,14 @@ export class LoginService {
     return true;
   }
 
+  //OK
+  /* obterToken(){
+    const token = localStorage.getItem(CHAVE_TOKEN);
+    if(token){
+      //this.usuarioLogado(token);
+      return token;
+    }
+    else  
+      return null;
+  } */
 }

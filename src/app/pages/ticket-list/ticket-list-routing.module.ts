@@ -6,7 +6,10 @@ import { TicketListPage } from './ticket-list.page';
 const routes: Routes = [
   {
     path: '',
-    component: TicketListPage
+    component: TicketListPage,
+    data: {
+      roles: ['Usuario','Suporte','Gerente','Admin']
+    }
   }
 ];
 

@@ -1,3 +1,4 @@
+import { PessoaRequest } from './../models/pessoa/pessoaRequest.model';
 import { PerfilRequest } from './../models/pessoa/perfilRequest.model';
 import { PerfilResponse } from './../models/pessoa/perfilResponse.model';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Pais } from '../models/pessoa/pais.model';
 import { Uf } from '../models/pessoa/uf.model';
 import { OperadorResponse } from '../models/ticket/operadorResponse.model';
+import { PessoaResponse } from '../models/pessoa/pessoaResponse.model';
 
 const ENDERECO_API: string = `${environment.api}/pessoa`;
 
@@ -23,6 +25,22 @@ export class PessoaService {
 
   public salvarPerfil(perfil: PerfilRequest) {
     return this.http.post(`${ENDERECO_API}/perfil`, perfil);
+  }
+
+  public getById(id: string): Observable<PessoaResponse> {
+    return this.http.get<PessoaResponse>(`${ENDERECO_API}/id?contaId=${id}`);
+  }
+
+  public novaPessoa(pessoa: PessoaRequest) {
+    return this.http.post(`${ENDERECO_API}`, pessoa);
+  }
+
+  public editarPessoa(pessoa: PessoaRequest) {
+    return this.http.put(`${ENDERECO_API}`, pessoa);
+  }
+
+  public getAll(ativo: boolean, tipo: number): Observable<PessoaResponse[]> {
+    return this.http.get<PessoaResponse[]>(`${ENDERECO_API}?ativa=${ativo}&tipo=${tipo}`);
   }
 
   public getPaises (): Array<Pais> {

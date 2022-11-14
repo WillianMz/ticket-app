@@ -1,26 +1,55 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app>
 
-<ion-content>
+    
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Entrar</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-content>
+      <ion-card>
+        <ion-card-content>
+          <div class="login-logo">
+            <img src="../../../assets/appicon.png" alt="Logo">
+          </div>
+        
+          <form [formGroup]="loginForm">
+            <ion-list>
+              <ion-item>
+                <ion-label position="stacked" color="primary">Email</ion-label>
+                <ion-input id="email" type="email" formControlName="email"></ion-input>
+    
+                     
+              </ion-item>
+        
+              <!-- <div class="text-danger" *ngIf="inputEmail?.errors">
+                <ion-note slot="error">Invalid email</ion-note>
+              </div>    -->    
+    
+              <ion-item>
+                <ion-label position="stacked" color="primary">Senha</ion-label>
+                <ion-input formControlName="senha" id="senha" type="password">
+                </ion-input>
+              </ion-item>
+    
+              <!-- VALIDACAO -->
+              <!-- <div class="text-danger" *ngIf="inputSenha?.errors">
+                <div *ngIf="inputSenha?.errors?.required && (inputSenha?.dirty || inputSenha?.touched)">Senha é obrigatório</div>
+              </div> -->
+        
+            </ion-list>
+        
+            
+          </form>
+    
+          <ion-button expand="block"  (click)="entrar()" [disabled]="!loginForm.valid">Entrar</ion-button>
+          <ion-button expand="full">Criar uma conta</ion-button>
+          <ion-button expand="full">Esqueci minha senha</ion-button>
+        </ion-card-content>
+      </ion-card>
+    
+    </ion-content>
+</ion-app>
 
-  <form [formGroup]="loginForm">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input formControlName="email" id="email"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label position="floating">Login</ion-label>
-      <ion-input formControlName="senha" id="senha"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-button (click)="entrar()">Entrar</ion-button>
-    </ion-item>
-
-  </form>
-
-</ion-content>

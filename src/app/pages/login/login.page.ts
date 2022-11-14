@@ -12,37 +12,58 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginPage implements OnInit {
 
   loginForm:  FormGroup;
+  mensagem: string;
+  sucesso: boolean;
+  mensagemDeErro: string;
 
   constructor(
     private loginService: LoginService,
     private router: Router
   ) { 
     const login = new LoginRequest();
+    login.email = '';
+    login.senha = '';
     this.startForm(login);
   }
 
   ngOnInit() {
   }
 
-  get email(){
+  get inputEmail(){
     return this.loginForm.get('email');
   }
 
-  get senha(){
+  get inputSenha(){
     return this.loginForm.get('senha');
   }
 
   public entrar(){
     let login = new LoginRequest;
-    login.email = this.email?.value;
-    login.senha = this.senha?.value;
+    login.email = this.inputEmail?.value;
+    login.senha = this.inputSenha?.value;
+    /* login.email = 'willianmazzorana@hotmail.com';
+    login.senha = '@Willian2022';
+ */
 
     this.loginService.fazerLogin(login).subscribe({
       next: (response) => {
-        if(response?.sucesso == true) {
-          this.loginService.salvarToken(response.token);
-          this.router.navigate(['']);
+        if(response) {
+          this.sucesso = response['sucesso'];
+          if(this.sucesso){
+            const token = response['mensagem'];
+            this.loginService.salvarToken(token);
+            this.router.navigate(['']);
+          }
+          else{
+            this.mensagemDeErro = response['mensagem'];
+          }
         }
+        else{
+          alert('Aqui');
+        }
+      },
+      error: (error) => {
+        alert('Erro' + error.error);
       }
     });
   }

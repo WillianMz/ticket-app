@@ -1,3 +1,6 @@
+import { SetorResponse } from "../sector/setorResponse.model";
+import { OperadorResponse } from "./operadorResponse.model";
+
 export class ChamadoRequest {
   public ticketId?: number;
   public equipamentoId?: number;

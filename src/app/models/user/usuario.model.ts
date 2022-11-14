@@ -4,4 +4,7 @@ export class Usuario {
     public email?: string;
     public perfil: string;
     public imgPerfil?: string;
+    public emailConfirmado: boolean;
+    public bloqueado: boolean;
+    public roles: string[];
 }

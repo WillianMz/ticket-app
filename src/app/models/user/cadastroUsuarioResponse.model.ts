@@ -1,4 +1,4 @@
 export class CadastroUsuarioResponse {
     public sucesso?: boolean;
-    public erros?: any[];
+    public erros?: string[];
 }

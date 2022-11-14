@@ -6,7 +6,10 @@ import { SectorListPage } from './sector-list.page';
 const routes: Routes = [
   {
     path: '',
-    component: SectorListPage
+    component: SectorListPage,
+    data: {
+      roles: ['Usuario','Suporte','Gerente','Admin']
+    }
   }
 ];
 

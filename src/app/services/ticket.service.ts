@@ -1,12 +1,12 @@
+import { AnexoRequest } from './../models/ticket/anexoRequest.model';
+import { FinalizarRequest } from './../models/ticket/finalizarRequest.model';
+import { CancelarRequest } from './../models/ticket/cancelarRequest.model';
+import { ChamadoResponse } from './../models/ticket/chamadoResponse.model';
+import { ChamadoRequest } from './../models/ticket/chamadoRequest.model';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AnexoRequest } from '../models/ticket/anexoRequest.model';
-import { CancelarRequest } from '../models/ticket/cancelarRequest.model';
-import { ChamadoRequest } from '../models/ticket/chamadoRequest.model';
-import { ChamadoResponse } from '../models/ticket/chamadoResponse.model';
-import { FinalizarRequest } from '../models/ticket/finalizarRequest.model';
 
 const ENDERECO_API: string = `${environment.api}/ticket`;
 
@@ -38,8 +38,8 @@ export class TicketService {
     return this.http.put(`${ENDERECO_API}/cancelar`, motivo);
   }
   
-  public finalizar(motivo: FinalizarRequest) {
-    return this.http.put(`${ENDERECO_API}/finalizar`, motivo);
+  public finalizar(solucao: FinalizarRequest) {
+    return this.http.put(`${ENDERECO_API}/finalizar`, solucao);
   }
   
   public delete(id: number){

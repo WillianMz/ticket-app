@@ -6,7 +6,10 @@ import { TicketOpenPage } from './ticket-open.page';
 const routes: Routes = [
   {
     path: '',
-    component: TicketOpenPage
+    component: TicketOpenPage,
+    data: {
+      roles: ['Usuario','Suporte','Gerente','Admin']
+    }
   }
 ];
 

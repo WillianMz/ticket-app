@@ -6,7 +6,10 @@ import { PerfilPage } from './perfil.page';
 const routes: Routes = [
   {
     path: '',
-    component: PerfilPage
+    component: PerfilPage,
+    data: {
+      roles: ['Usuario','Suporte','Gerente','Admin']
+    }
   }
 ];
 
