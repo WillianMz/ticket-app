@@ -22,6 +22,10 @@ export class SectorListPage implements OnInit {
     this.listarSetores(true);
   }
 
+  abrirChamado(setor: number) {
+    this.router.navigate(['/ticket-open'], { queryParams: {setorId: setor}});
+  }
+
   public consultarEquipamentos(sectorId: string, ativo: boolean){
     this.router.navigate(['equipment'], {queryParams: { sector: sectorId, ativo: ativo}});
   }

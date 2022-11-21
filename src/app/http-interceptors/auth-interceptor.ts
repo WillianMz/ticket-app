@@ -1,7 +1,7 @@
 import { LoginService } from 'src/app/services/login.service';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, finalize, Observable, throwError } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -24,7 +24,6 @@ export class AuthInterceptor implements HttpInterceptor {
             });
         }
 
-        //retorno o request com o erro tratado
         return next.handle(request)
             .pipe(
                 catchError(this.handleError)

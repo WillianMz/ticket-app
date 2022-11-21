@@ -9,62 +9,38 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-row>
+    <ion-row *ngIf="perfil?.imgPerfil">
       <ion-col>
-        <img src="http://suporte.williansistemas.kinghost.net/images/31361d2e2eac4ea4afd7f81e73dcfe39_98681.jpg" alt="Profile picture" class="profile-picture">
+        <img [src]="perfil.imgPerfil" alt="Foto Perfil" class="profile-picture">
       </ion-col>
     </ion-row>
-    <h1>Roberto Lluberes</h1>
+    <h1 *ngIf="perfil?.nomeCompleto">{{perfil.nomeCompleto}}</h1>
 
     <ion-list>
-      <ion-list-header>
-        Contacto
-      </ion-list-header>
-
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
-        <ion-input id="assunto"></ion-input>
+        <ion-input readonly="true" [value]="perfil?.nomeCompleto"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Telefone</ion-label>
-        <ion-input id="assunto"></ion-input>
+        <ion-input readonly="true" [value]="perfil?.telefone"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Cidade</ion-label>
-        <ion-input id="assunto"></ion-input>
+        <ion-input readonly="true" [value]="perfil?.cidade"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">UF</ion-label>
-        <ion-input id="assunto"></ion-input>
+        <ion-select [ngModel]="perfil?.uf" disabled="true">
+          <ion-select-option *ngFor="let uf of estados" [value]="uf.sigla">{{ uf.nome }}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">País</ion-label>
-        <ion-input id="assunto"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-select placeholder="Selecione UF">
-          <ion-select-option value="apples">Apples</ion-select-option>
-          <ion-select-option value="oranges">Oranges</ion-select-option>
-          <ion-select-option value="bananas">Bananas</ion-select-option>
+        <ion-select [ngModel]="perfil?.pais" disabled="true">
+          <ion-select-option readonly="true" *ngFor="let pais of paises" [value]="perfil?.pais">{{ pais.nome }}</ion-select-option>
         </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-select placeholder="Selecione o País">
-          <ion-select-option value="apples">Brasil</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-icon name='call' item-start></ion-icon>
-        <a href="tel:8095550000">(809) 555-0000</a>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon name='mail' item-start></ion-icon>
-        <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a>
       </ion-item>
     </ion-list>
   </ion-grid>

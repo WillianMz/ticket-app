@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>CHAMADO 77</ion-title>
+    <ion-title>CHAMADO {{chamado?.id}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,31 +11,30 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Destlhes</ion-card-subtitle>
-      <!-- <ion-card-title>Detalhes</ion-card-title> -->
+      <ion-card-title>Detalhes</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-list lines="full">
         <ion-item>
           <ion-label position="stacked">Data Abertura</ion-label>
-          <ion-input value="14/11/2022" [readonly]="true"></ion-input>
+          <ion-input value="{{chamado?.dataAbertura}}" [readonly]="true"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Laboratório</ion-label>
-          <ion-input value="LAB-01" [readonly]="true"></ion-input>
+          <ion-input value="{{chamado?.setor.nome}}" [readonly]="true"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Equipamento</ion-label>
-          <ion-input value="ID 123654" [readonly]="true"></ion-input>
+          <ion-input value="{{chamado?.equipamentoId || ''}} {{chamado?.equipamentoNome || 'Equipamento não foi identificado!'}}" [readonly]="true"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Assunto</ion-label>
-          <ion-input value="Equipamento não esta ligando" [readonly]="true"></ion-input>
+          <ion-input value="{{chamado?.assunto}}" [readonly]="true"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked">Descrição</ion-label>
           <ion-textarea [readonly]="true">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste vitae quo atque possimus placeat nulla corrupti, sunt exercitationem obcaecati? Pariatur doloremque sequi autem debitis ad ab nesciunt cupiditate ex quibusdam.
+            {{chamado?.descricao}}
           </ion-textarea>
         </ion-item>
       </ion-list>
@@ -49,43 +48,21 @@
     <ion-card-content>
       <ion-list lines="none">
         <ion-item>
-          <ion-label >Nome: WILLIAN MAZZORANA</ion-label>
-          
+          <ion-label position="stacked">Criador</ion-label>
+          <ion-input value="{{chamado?.criador.nome}}" [readonly]="true"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="chamado?.operador">
+          <ion-label position="stacked">Responsável</ion-label>
+          <ion-input value="{{chamado?.operador.id}}-{{chamado?.operador.nome}}" [readonly]="true"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="chamado?.finalizador">
+          <ion-label position="stacked">Finalizador</ion-label>
+          <ion-input value="{{chamado?.finalizador.id}}-{{chamado?.finalizador.nome}}" [readonly]="true"></ion-input>
         </ion-item>
       </ion-list>
 
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button color="primary">
-          <ion-icon name="call-outline"></ion-icon>
-        </ion-fab-button>
-    
-        <ion-fab-list side="start">
-          <!-- EMAIL -->
-          <ion-fab-button color="primary">
-            <ion-icon name="mail-outline"></ion-icon>
-          </ion-fab-button>
-    
-          <!-- TELEGRAM -->
-          <ion-fab-button color="primary">
-            <ion-icon name="send-outline"></ion-icon>
-          </ion-fab-button>
-    
-          <!-- WHATSAPP -->
-          <ion-fab-button color="primary">
-            <ion-icon name="logo-whatsapp"></ion-icon>
-          </ion-fab-button>
-        </ion-fab-list>
-      </ion-fab>
-
     </ion-card-content>
     
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Dados do equipamento</ion-card-subtitle>
-      <ion-card-title>Awesome Title</ion-card-title>
-    </ion-card-header>
   </ion-card>
 
 </ion-content>

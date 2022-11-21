@@ -10,8 +10,7 @@
 
 <ion-content>
 
-  <ion-searchbar placeholder="Procurar"></ion-searchbar>
-
+  <!-- <ion-searchbar placeholder="Procurar"></ion-searchbar> -->
   <ion-segment value="pendente">
     <ion-segment-button value="pendente" (click)="pendentes()" >
       <ion-label>Pendentes</ion-label>
@@ -28,12 +27,12 @@
   <ion-list lines="inset">
 
     <ion-card>
+      <ion-card-header>
+        <ion-button expand="block" (click)="abrirChamado()">ABRIR CHAMADO</ion-button>
+      </ion-card-header>
       
       <ion-card-content>
-        <ion-item button *ngFor="let c of chamados" routerLink="/ticket-form">
-          <!-- <ion-avatar slot="start">
-            <img src="../../../assets/img/img1.png">
-          </ion-avatar> -->
+        <ion-item button *ngFor="let c of chamados" (click)="verChamado(c.id)">
           <ion-label>
             <h2>#{{c.id}} - {{c.assunto}}</h2>
             <h3>{{c.setor.nome}}</h3>
@@ -43,11 +42,15 @@
           <ion-label slot="end">
             <ion-note slot="end" color="primary">{{c.status}}</ion-note>
           </ion-label>
-          <!-- <ion-note slot="end" color="warning">Alto</ion-note> -->
         </ion-item>
       </ion-card-content>
     </ion-card>
-
-
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="abrirChamado()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> 
+
 </ion-content>

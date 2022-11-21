@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { LoginRequest } from 'src/app/models/auth/loginRequest.model';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -18,7 +19,9 @@ export class LoginPage implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private loadingCtrl: LoadingController,
+    private alertController: AlertController
   ) { 
     const login = new LoginRequest();
     login.email = '';
@@ -37,13 +40,20 @@ export class LoginPage implements OnInit {
     return this.loginForm.get('senha');
   }
 
-  public entrar(){
+  public async entrar(){
     let login = new LoginRequest;
     login.email = this.inputEmail?.value;
     login.senha = this.inputSenha?.value;
     /* login.email = 'willianmazzorana@hotmail.com';
     login.senha = '@Willian2022';
  */
+    const loading = await this.loadingCtrl.create({
+      cssClass: 'backdrop-opacity',
+      message: 'Aguarde...',
+      animated: true,
+      spinner: 'lines'
+    });
+    await loading.present();
 
     this.loginService.fazerLogin(login).subscribe({
       next: (response) => {
@@ -53,17 +63,22 @@ export class LoginPage implements OnInit {
             const token = response['mensagem'];
             this.loginService.salvarToken(token);
             this.router.navigate(['']);
+            loading.dismiss();
           }
           else{
             this.mensagemDeErro = response['mensagem'];
+            this.alerta('Login',this.mensagemDeErro);
+            loading.dismiss();
           }
         }
         else{
-          alert('Aqui');
+          alert(this.mensagem);
+          loading.dismiss();
         }
       },
       error: (error) => {
         alert('Erro' + error.error);
+        loading.dismiss();
       }
     });
   }
@@ -82,6 +97,17 @@ export class LoginPage implements OnInit {
         Validators.maxLength(12)
       ])
     });
+  }
+
+  private async alerta(titulo: string, mensagem: string, subtitulo?: string){
+    const alert = await this.alertController.create({
+      header: titulo,
+      subHeader: subtitulo,
+      message: mensagem,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 
 }

@@ -29,7 +29,7 @@ import { ModulosGuard } from './guards/modulos.guard';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot()
   ],
   providers: [
     HttpInterceptorProviders,

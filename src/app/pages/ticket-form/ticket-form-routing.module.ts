@@ -7,7 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: TicketFormPage
-  }
+  },
+  {
+    path:':id',
+    component: TicketFormPage,
+    data: {
+      roles: ['Suporte','Gerente','Admin']
+    }
+  },
 ];
 
 @NgModule({

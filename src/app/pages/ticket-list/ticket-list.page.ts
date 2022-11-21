@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { ChamadoResponse } from 'src/app/models/ticket/chamadoResponse.model';
 import { Usuario } from 'src/app/models/user/usuario.model';
 import { LoginService } from 'src/app/services/login.service';
@@ -25,7 +25,9 @@ export class TicketListPage implements OnInit {
     private ticketService: TicketService,
     private router: Router,
     private loginService: LoginService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loadingCtrl: LoadingController,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -34,6 +36,14 @@ export class TicketListPage implements OnInit {
       this.usuarioLogado = user;
     }
     this.pendentes();
+  }
+
+  verChamado(id: number){
+    this.router.navigate([`/ticket-form/${id}`]);
+  }
+
+  abrirChamado(){
+    this.router.navigate(['/ticket-open']);
   }
 
   pendentes(){
@@ -48,18 +58,30 @@ export class TicketListPage implements OnInit {
     this.listarMeusChamados(0);
   }
 
-  private listarMeusChamados(status: number){
+  private async listarMeusChamados(status: number){
+    const loading = await this.loadingCtrl.create({
+      cssClass: 'backdrop-opacity',
+      message: 'Aguarde...',
+      animated: true,
+      spinner: 'lines'
+    });
+    await loading.present();
+
     this.ticketService.getMeusChamados(status).subscribe({
       next: (response) => {
         if(response){
           this.chamados = response;
+          loading.dismiss();
         }
         else{
-          this.notificacao('top','Não foi possível obter os chamados!');
+          //this.notificacao('top','Não foi possível obter os chamados!');
+          this.alerta('Obter chamados','Nenhum chamado encontrado');
+          loading.dismiss();
         }
       },
       error: () => {
         this.notificacao('top','Ocorreu um erro ao consultar seus chamados!');
+        loading.dismiss();
       }
     });
   }
@@ -74,4 +96,14 @@ export class TicketListPage implements OnInit {
     await toast.present();
   }
 
+  private async alerta(titulo: string, mensagem: string, subtitulo?: string){
+    const alert = await this.alertController.create({
+      header: titulo,
+      subHeader: subtitulo,
+      message: mensagem,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
 }

@@ -16,8 +16,8 @@ export class AppComponent {
 
   public appPages = [
     /* { title: 'Home', url: '/home', icon: 'home' }, */
-    { title: 'Abrir Chamado', url: '/ticket-open', icon: 'add' },
     { title: 'Meus Chamados', url: '/ticket-list', icon: 'ticket' },
+    { title: 'Abrir Chamado', url: '/ticket-open', icon: 'add' },
     { title: 'Laboratórios', url: '/sector-list', icon: 'layers' },
     { title: 'Perfil', url: '/perfil', icon: 'newspaper' },
     { title: 'Sobre', url: '/about', icon: 'book' }
@@ -37,7 +37,6 @@ export class AppComponent {
       this.usuario = user;
       this.carregarPerfil();
     }
-
   }
 
   sair(){

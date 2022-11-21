@@ -7,61 +7,91 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
+<ion-content *ngIf="!scanActive">
 
-    <ion-card-content>
-      <form [formGroup]="chamadoForm">
+  <form [formGroup]="chamadoForm">
+    <ion-card *ngIf="selecionarSetor">
+      <ion-card-header>
+        <ion-card-title>Laboratório</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-select placeholder="Selecione o laboratório" formControlName="setor" [ngModel]="setorId">
+              <ion-select-option  *ngFor="let s of setores" [value]="s.id">{{s.nome}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="informarEquipamento">
+      <ion-card-header>
+        <ion-card-title>Equipamento</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
         <ion-list>
           <ion-item lines="">
             <ion-input 
-            formControlName="equipamento"
-            type="tel"
-            placeholder="ID Equipamento"
-            autofocus="true"
-            inputmode="tel"
-            maxlength="13"
-            minlength="1"
-            clearInput="true">
-          </ion-input>
-    
-          <ion-button size="large" >
-            <ion-icon name="qr-code-outline"></ion-icon>
-          </ion-button>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="floating">Assunto</ion-label>
-            <ion-input id="assunto" formControlName="assunto"></ion-input>
-          </ion-item>
-  
-          <ion-item>
-            <ion-label position="floating">Descrição do problema</ion-label>
-            <ion-textarea wrap="soft" spellcheck="true" rows="6" id="descricao" formControlName="descricao"></ion-textarea>
+              formControlName="equipamento"
+              type="tel"
+              placeholder="ID Equipamento"
+              autofocus="true"
+              inputmode="tel"
+              maxlength="13"
+              minlength="1"
+              clearInput="true">
+            </ion-input>
           </ion-item>
         </ion-list>
+        <ion-button expand="block" (click)="lerQrCode()">
+          <ion-icon name="qr-code-outline"></ion-icon>
+           Ler QrCode
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
 
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Problema</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+          <ion-list>  
+            <ion-item>
+              <ion-label position="floating">Descrição do problema</ion-label>
+              <ion-textarea wrap="soft" spellcheck="true" rows="4" id="descricao" formControlName="descricao"></ion-textarea>
+            </ion-item>
+          </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Anexo</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
         <ion-list>
           <ion-item>
             <input type="file" #fileInput (change)="upload(fileInput.files)">
           </ion-item>
         </ion-list>
+      </ion-card-content>
+    </ion-card>
 
-      </form>
+    <ion-button expand="block" (click)="salvar()" [disabled]="!chamadoForm.valid">
+       Salvar
+    </ion-button>
+    <ion-button color="danger" expand="block" (click)="voltar()">
+       Voltar
+    </ion-button>
 
-    </ion-card-content>
-  </ion-card>
+  </form>
 
-  <ion-fab vertical="bottom" horizontal="left" slot="fixed">
-    <ion-fab-button >
-      <ion-icon name="camera-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <!-- <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="salvar()" [disabled]="!chamadoForm.valid">
       <ion-icon name="checkmark-outline"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
-
+  </ion-fab> -->
 </ion-content>
